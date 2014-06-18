@@ -21,7 +21,9 @@ module.exports = (robot) ->
   	msg.send("Yasogami")
 
   robot.hear /toggle autoban/i, (msg) ->
-  	return msg.send("You are not on the approved list of sudoers. This incident will be reported.") if msg.message.user.name.toLowerCase() != master
+  	return msg.send("You are not on the approved list of sudoers. This incident will be reported.") if msg.message.user.name.toLowerCase() isnt master
     autoBan = !autoBan
-    return msg.send("*unsheathes sword*\n\n()==[:::::::::::::>") if autoBan
-    return msg.send("*sheathes sword*") if !autoBan
+    if autoBan
+    	msg.send("-unsheathes sword-\n\n()==[:::::::::::::>")
+    else
+    	msg.send("-sheathes sword-")
