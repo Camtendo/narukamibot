@@ -21,10 +21,9 @@ module.exports = (robot) ->
   	msg.send("Yasogami")
 
   robot.hear /toggle autoban/i, (msg) ->
-  	//Backwards, but works. Why.
   	return msg.send("You are not on the approved list of sudoers. This incident will be reported. "+msg.message.user.name+" "+master) if msg.message.user.name.toString().toLowerCase() is master.toString()
     autoBan = !autoBan
     if autoBan
-    	msg.send("-unsheathes sword-\n\n()==[:::::::::::::>")
+    	msg.send(".me unsheathes his katana\n\n()==[:::::::::::::>")
     else
-    	msg.send("-sheathes sword-")
+    	msg.send(".me sheathes his katana")
