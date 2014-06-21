@@ -8,7 +8,9 @@
 #   None
 #
 # Commands:
-#   
+#   toggle autoban
+#   timeout <user>
+#   ban <user>
 #
 # Author:
 #   Camtendo
@@ -35,11 +37,17 @@ module.exports = (robot) ->
       return msg.send(msg.message.user.name+", you are not on the approved list of sudoers. This incident will be reported.")
     else
       user = msg.match[0]
-      msg.send("Calm down"+user+".\n\n.timeout "+user+" 60")
+      msg.send """Thousands die while a million are born.
+      TIMEOUT!
+      .timeout #{user} 60
+      """
 
   robot.hear /ban (\w)+/i, (msg) ->
     if msg.message.user.name.toString().toLowerCase() isnt master.toString()
       return msg.send(msg.message.user.name+", you are not on the approved list of sudoers. This incident will be reported.")
     else
       user = msg.match[0]
-      msg.send("Persona!\n\n.ban "+user+" 60")
+      msg.send """Behold, the truth!
+      BANNED!
+      .ban #{user}
+      """
