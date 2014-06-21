@@ -37,7 +37,8 @@ module.exports = (robot) ->
       return msg.send(msg.message.user.name+", you are not on the approved list of sudoers. This incident will be reported.")
     else
       user = msg.match[0]
-      msg.send """Thousands die while a million are born.
+      msg.send """Thousands die while a million are born.'
+      #{user},
       TIMEOUT!
       .timeout #{user} 60
       """
@@ -48,6 +49,7 @@ module.exports = (robot) ->
     else
       user = msg.match[0]
       msg.send """Behold, the truth!
+      #{user},
       BANNED!
       .ban #{user}
       """
