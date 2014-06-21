@@ -36,7 +36,8 @@ module.exports = (robot) ->
     if msg.message.user.name.toString().toLowerCase() isnt master.toString()
       return msg.send(msg.message.user.name+", you are not on the approved list of sudoers. This incident will be reported.")
     else
-      user = msg.match[0].substr(msg.indexOf(" "))
+      command = msg.match[0]
+      user = command.substr(command.indexOf(" "))
       msg.send """Thousands die while a million are born.
       #{user},
       TIMEOUT!
@@ -47,7 +48,8 @@ module.exports = (robot) ->
     if msg.message.user.name.toString().toLowerCase() isnt master.toString()
       return msg.send(msg.message.user.name+", you are not on the approved list of sudoers. This incident will be reported.")
     else
-      user = msg.match[0]
+      command = msg.match[0]
+      user = command.substr(command.indexOf(" "))
       msg.send """Behold, the truth!
       #{user},
       BANNED!
