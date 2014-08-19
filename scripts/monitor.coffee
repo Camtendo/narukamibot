@@ -15,7 +15,7 @@
 
 module.exports = (robot) ->
   robot.enter (msg) ->
-    msg.send "Hello. I am Elizabeth, The Velvet Room's personal tournament organizer. "+msg.robot.commands.length+" commands were loaded successfully. Twitch Build Hash = "+uniqueId(16) if msg.message.user.name.toLowerCase() is robot.name.toLowerCase()
+    msg.send "Hello. I am Elizabeth, The Velvet Room's personal tournament organizer. "+msg.robot.commands.length+" commands were loaded. Twitch Build Hash = "+uniqueId(16) if msg.message.user.name.toLowerCase() is robot.name.toLowerCase()
 
   robot.leave (msg) ->
       if msg.message.user.name.toLowerCase() is 'reesaybot'
