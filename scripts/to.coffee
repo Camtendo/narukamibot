@@ -70,12 +70,11 @@ module.exports = (robot) ->
 
 
   mapMatches = (msg, tournament) ->
-    msg.send "DEBUG #{Util.inspect(tournament)}"
-    return -1 if !tournament.length
     #Remove completed matches
     for i, id in tournament.tellys then do (id) =>
       if id != ''
         match = getMatch(msg, tournament, id)
+        msg.send "DEBUG #{Util.inspect(match)}"
         if match[0].match.state == "complete"
           msg.send("Match #{id} on TV #{i} has completed.")
           id = ''
