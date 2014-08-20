@@ -36,13 +36,13 @@ module.exports = (robot) ->
     tourney = { name:'', game: '', hash: tHash, matches:[], players: [], tvs: numTVs, tellys: t_vs}
     msg.send('Initializing tournament using Challonge...')
     fetchTournament(msg, tourney)
+    tournaments.push tourney
 
     timeoutId = setInterval ->
       fetchTournament(msg, t) for t in tournaments
       mapMatches(msg, t) for t in tournaments
     , 20000
 
-    tournaments.push tourney
 
   isAdmin = (admin) ->
     admins.indexOf(admin) isnt -1
