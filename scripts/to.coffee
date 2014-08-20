@@ -75,7 +75,7 @@ module.exports = (robot) ->
     for id, i in tournament.tellys then do (id) =>
       if id != ''
         match = getMatch(msg, tournament, id)
-        if match != null and match[0] != null #and match[0].match.state == "complete"
+        if match != null and match[0] != null and match[0].match.state == "complete"
           msg.send("Match #{id} on TV #{i} has completed.")
           id = ''
         else
@@ -94,9 +94,9 @@ module.exports = (robot) ->
     for id, i in tournament.tellys then do (id) =>
       if id == '' and queuedMatches.length > 0
         match = queuedMatches[0]
-        playerOne = this.getPlayer(msg, currentMatch[0].match.player1_id)
+        playerOne = this.getPlayer(msg, match[0].match.player1_id)
         leftPlayer = if playerOne[0].participant.name then playerOne[0].participant.name else playerOne[0].participant.username
-        playerTwo = this.getPlayer(msg, currentMatch[0].match.player2_id)
+        playerTwo = this.getPlayer(msg, match[0].match.player2_id)
         rightPlayer = if playerTwo[0].participant.name then playerTwo[0].participant.name else playerTwo[0].participant.username
         msg.send("Match #{id}: #{leftPlayer} vs. #{rightPlayer} should be put on TV #{i}")
         id = match.match.identifier
