@@ -56,7 +56,7 @@ module.exports = (robot) ->
       player.participant.id == userId
 
   fetchTournament = (msg, tournament) ->
-  	msg.send('Fetching...')
+    msg.send('Fetching...')
     msg.http(challongeApi+"/tournaments/"+tournament.hash+".json?include_matches=1&include_participants=1")
         .get() (err, res, body) ->
           try
