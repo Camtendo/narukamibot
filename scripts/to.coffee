@@ -56,6 +56,7 @@ module.exports = (robot) ->
       player.participant.id == userId
 
   fetchTournament = (msg, tournament) ->
+  	msg.send('Fetching...')
     msg.http(challongeApi+"/tournaments/"+tournament.hash+".json?include_matches=1&include_participants=1")
         .get() (err, res, body) ->
           try
@@ -69,7 +70,8 @@ module.exports = (robot) ->
 
 
   mapMatches = (msg, tournament) ->
-  	#Remove completed matches
+    return -1 if !tournament.length
+    #Remove completed matches
     for i, id in tournament.tellys then do (id) =>
       if id != ''
         match = getMatch(msg, tournament, id)
