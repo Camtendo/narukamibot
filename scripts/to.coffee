@@ -75,7 +75,7 @@ module.exports = (robot) ->
     for i, id in tournament.tellys then do (id) =>
       if id != ''
         match = getMatch(msg, tournament, id)
-        msg.send "DEBUG #{Util.inspect(match)}"
+        msg.send "DEBUG #{Util.inspect(id)}"
         if match != null and match[0] != null #and match[0].match.state == "complete"
           msg.send("Match #{id} on TV #{i} has completed.")
           id = ''
