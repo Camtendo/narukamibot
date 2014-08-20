@@ -30,7 +30,9 @@ module.exports = (robot) ->
     return msg.send("You don't have permission to do that.") if !isAdmin msg.message.user.name
     tHash = msg.match[1]
     numTVs = msg.match[2]
-    t_vs = '' for x in [1..numTVs]
+    t_vs = []
+    for x in [1..numTVs]
+      t_vs.push ''
     tourney = { name:'', game: '', hash: tHash, matches:[], players: [], tvs: numTVs, tellys: t_vs}
     msg('Initializing tournament using Challonge...')
     fetchTournament(msg, tourney)
