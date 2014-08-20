@@ -70,6 +70,7 @@ module.exports = (robot) ->
 
 
   mapMatches = (msg, tournament) ->
+    msg.send "DEBUG #{Util.inspect(tournament)}"
     return -1 if !tournament.length
     #Remove completed matches
     for i, id in tournament.tellys then do (id) =>
