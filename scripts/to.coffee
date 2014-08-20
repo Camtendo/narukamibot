@@ -34,7 +34,7 @@ module.exports = (robot) ->
     for x in [1..numTVs]
       t_vs.push ''
     tourney = { name:'', game: '', hash: tHash, matches:[], players: [], tvs: numTVs, tellys: t_vs}
-    msg('Initializing tournament using Challonge...')
+    msg.send('Initializing tournament using Challonge...')
     fetchTournament(msg, tourney)
 
     timeoutId = setInterval ->
