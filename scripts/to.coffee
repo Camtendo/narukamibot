@@ -42,6 +42,8 @@ module.exports = (robot) ->
       mapMatches(msg, t) for t in tournaments
     , 20000
 
+    tournaments.push tourney
+
   isAdmin = (admin) ->
     admins.indexOf(admin) isnt -1
 
