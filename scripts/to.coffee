@@ -28,7 +28,6 @@ module.exports = (robot) ->
 
   robot.hear /add tournament (.*) -tvs (.*)/i, (msg) ->
     return msg.send("You don't have permission to do that.") if !isAdmin msg.message.user.name
-    return msg.send("I only have power in my chat room. Please enter http://www.twitch.tv/the_velvet_to") if msg.message.user.room != "the_velvet_to"
     tHash = msg.match[1]
     numTVs = msg.match[2]
     t_vs = '' for x in [1..numTVs]
