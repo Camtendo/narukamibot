@@ -76,7 +76,7 @@ module.exports = (robot) ->
       if id != ''
         match = getMatch(msg, tournament, id)
         msg.send "DEBUG #{Util.inspect(match)}"
-        if match != null and match[0].match.state == "complete"
+        if match != null and match[0] != null and match[0].match.state == "complete"
           msg.send("Match #{id} on TV #{i} has completed.")
           id = ''
         else
