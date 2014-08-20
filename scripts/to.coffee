@@ -70,6 +70,7 @@ module.exports = (robot) ->
 
 
   mapMatches = (msg, tournament) ->
+  	return -1 if !tournament or !tournament.matches.length
     #Remove completed matches
     for i, id in tournament.tellys then do (id) =>
       if id != ''
