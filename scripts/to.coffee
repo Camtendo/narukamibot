@@ -72,10 +72,9 @@ module.exports = (robot) ->
   mapMatches = (msg, tournament) ->
     return -1 if !tournament or !tournament.matches.length
     #Remove completed matches
-    for i, id in tournament.tellys then do (id) =>
+    for id, i in tournament.tellys then do (id) =>
       if id != ''
         match = getMatch(msg, tournament, id)
-        msg.send "DEBUG #{Util.inspect(id)}"
         if match != null and match[0] != null #and match[0].match.state == "complete"
           msg.send("Match #{id} on TV #{i} has completed.")
           id = ''
@@ -92,7 +91,7 @@ module.exports = (robot) ->
       else
         state = match.match.state
 
-    for i, id in tournament.tellys then do (id) =>
+    for id, i in tournament.tellys then do (id) =>
       if id == '' and queuedMatches.length > 0
         match = queuedMatches[0]
         playerOne = this.getPlayer(msg, currentMatch[0].match.player1_id)
