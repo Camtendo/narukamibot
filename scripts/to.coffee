@@ -101,6 +101,6 @@ module.exports = (robot) ->
         id = match.match.identifier
         tournament.tellys[i] = id
         msg.send("Match #{id}: #{leftPlayer} vs. #{rightPlayer} should be put on TV #{i+1}")
-        queuedMatches = queuedMatches.splice(0, 1)
+        queuedMatches.splice(0, 1)
       else
         skip = true
