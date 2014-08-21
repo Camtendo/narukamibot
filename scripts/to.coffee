@@ -86,13 +86,13 @@ module.exports = (robot) ->
     #Determine Queued Matches
     queuedMatches = []
     for match in tournament.matches then do (match) =>
-      if match.match.state == "open"
+      if match.match.state == "open" and tournament.tellys.indexOf(match.match.identifierd) is -1
         queuedMatches.push match
       else
         state = match.match.state
 
     for id, i in tournament.tellys then do (id) =>
-      if id == '' and queuedMatches.length > 0 and tournament.tellys.indexOf('') isnt -1
+      if id == '' and queuedMatches.length > 0
         match = queuedMatches[0]
         playerOne = getPlayer(msg, tournament, match.match.player1_id)[0]
         leftPlayer = if playerOne.participant.name then playerOne.participant.name else playerOne.participant.username
