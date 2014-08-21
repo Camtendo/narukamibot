@@ -56,7 +56,6 @@ module.exports = (robot) ->
       player.participant.id == userId
 
   fetchTournament = (msg, tournament) ->
-    msg.send('Fetching...')
     msg.http(challongeApi+"/tournaments/"+tournament.hash+".json?include_matches=1&include_participants=1")
         .get() (err, res, body) ->
           try
@@ -78,6 +77,7 @@ module.exports = (robot) ->
         if match != null and match[0] != null and match[0].match.state == "complete"
           msg.send("Match #{id} on TV #{i+1} has completed.")
           id = ''
+          tournament.tellys[i] = id
         else
           skippuuuuu = true
       else
