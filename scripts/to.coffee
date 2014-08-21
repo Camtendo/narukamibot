@@ -86,7 +86,7 @@ module.exports = (robot) ->
     #Determine Queued Matches
     queuedMatches = []
     for match in tournament.matches then do (match) =>
-      if match.match.state == "open" and tournament.tellys.indexOf(match.match.identifierd) is -1
+      if match.match.state == "open" and tournament.tellys.indexOf(match.match.identifier) is -1
         queuedMatches.push match
       else
         state = match.match.state
