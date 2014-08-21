@@ -95,11 +95,12 @@ module.exports = (robot) ->
       if id == '' and queuedMatches.length > 0
         match = queuedMatches[0]
         playerOne = getPlayer(msg, tournament, match.player1_id)
-        leftPlayer = if playerOne.participant.name then playerOne.participant.name else playerOne.participant.username
-        playerTwo = getPlayer(msg, tournament, match.player2_id)
-        rightPlayer = if playerTwo.participant.name then playerTwo.participant.name else playerTwo.participant.username
-        msg.send("Match #{id}: #{leftPlayer} vs. #{rightPlayer} should be put on TV #{i}")
-        id = match.match.identifier
-        queuedMatches.splice(0, 1)
+        msg.send "DEBUG #{Util.inspect(playerOne)}"
+        #leftPlayer = if playerOne.participant.name then playerOne.participant.name else playerOne.participant.username
+        #playerTwo = getPlayer(msg, tournament, match.player2_id)
+        #rightPlayer = if playerTwo.participant.name then playerTwo.participant.name else playerTwo.participant.username
+        #msg.send("Match #{id}: #{leftPlayer} vs. #{rightPlayer} should be put on TV #{i}")
+        #id = match.match.identifier
+        #queuedMatches.splice(0, 1)
       else
         skip = true
