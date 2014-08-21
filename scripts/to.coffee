@@ -93,7 +93,6 @@ module.exports = (robot) ->
 
     for id, i in tournament.tellys then do (id) =>
       if id == '' and queuedMatches.length > 0
-        msg.send "DEBUG #{Util.inspect(queuedMatches)}"
         match = queuedMatches[0]
         msg.send "DEBUG #{Util.inspect(match)}"
         #playerOne = getPlayer(msg, match[0].match.player1_id)
