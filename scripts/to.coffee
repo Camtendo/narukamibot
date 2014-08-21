@@ -98,11 +98,9 @@ module.exports = (robot) ->
         leftPlayer = if playerOne.participant.name then playerOne.participant.name else playerOne.participant.username
         playerTwo = getPlayer(msg, tournament, match.match.player2_id)[0]
         rightPlayer = if playerTwo.participant.name then playerTwo.participant.name else playerTwo.participant.username
-        x = match.match.identifier
-        if tournament.tellys.indexOf(x) is -1
-          id = match.match.identifier
-          tournament.tellys[i] = id
-          msg.send("Match #{id}: #{leftPlayer} vs. #{rightPlayer} should be put on TV #{i+1}")
-          queuedMatches.splice(0, 1)
+        id = match.match.identifier
+        tournament.tellys[i] = id
+        msg.send("Match #{id}: #{leftPlayer} vs. #{rightPlayer} should be put on TV #{i+1}")
+        queuedMatches.splice(0, 1)
       else
         skip = true
