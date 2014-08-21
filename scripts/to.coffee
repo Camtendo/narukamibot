@@ -94,9 +94,9 @@ module.exports = (robot) ->
     for id, i in tournament.tellys then do (id) =>
       if id == '' and queuedMatches.length > 0
         match = queuedMatches[0]
-        playerOne = getPlayer(msg, tournament, match.match.player1_id)
+        playerOne = getPlayer(msg, tournament, match.match.player1_id)[0]
         leftPlayer = if playerOne.participant.name then playerOne.participant.name else playerOne.participant.username
-        playerTwo = getPlayer(msg, tournament, match.match.player2_id)
+        playerTwo = getPlayer(msg, tournament, match.match.player2_id)[0]
         rightPlayer = if playerTwo.participant.name then playerTwo.participant.name else playerTwo.participant.username
         msg.send("Match #{id}: #{leftPlayer} vs. #{rightPlayer} should be put on TV #{i}")
         id = match.match.identifier
