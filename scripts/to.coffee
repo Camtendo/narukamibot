@@ -15,7 +15,7 @@
 
 Util = require 'util'
 
-admins = ["camtendo","hollyfrass", "t0asterb0t", "grandpajakelol", "milhouse92", "azianman"]
+admins = ["camtendo","hollyfrass", "t0asterb0t", "grandpajakelol", "milhouse92", "azianman", "ddrsensation"]
 apiKey = process.env.CHALLONGE_API_KEY
 challongeApi = 'https://Camtendo:'+apiKey+'@api.challonge.com/v1'
 tournaments = []
