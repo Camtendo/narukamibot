@@ -8,14 +8,18 @@
 #   CHALLONGE_API_KEY
 #
 # Commands:
-#	None
+#	add tournament (hash) -tvs (numTVs) - Creates a tournament from a Challonge hash with numTVs
+# stop tournaments - Kill autoupdate
+# for tournament (tourneyId) set match (id) on TV (number)
 #
 # Author:
 #   Camtendo
 
 Util = require 'util'
 
+#TODO Move to config
 admins = ["camtendo","hollyfrass", "t0asterb0t", "grandpajakelol", "milhouse92", "azianman", "ddrsensation", "staphf", "yuuleee", "satisfyler"]
+
 apiKey = process.env.CHALLONGE_API_KEY
 challongeApi = 'https://Camtendo:'+apiKey+'@api.challonge.com/v1'
 tournaments = []
@@ -37,12 +41,18 @@ module.exports = (robot) ->
     msg.send('Initializing tournament using Challonge...')
     fetchTournament(msg, tourney)
     tournaments.push tourney
+    clearInterval timeoutId if timeoutId
 
     timeoutId = setInterval ->
       fetchTournament(msg, t) for t in tournaments
       mapMatches(msg, t) for t in tournaments
     , 15000
 
+  robot.hear /for tournament (.*) set match (.*) on TV (.*)/i, (msg) ->
+    tourneyIndex = msg.match[1]
+    id = msg.match[2]
+    tvIndex = msg.match[3]
+    setMatch(msg, tournaments[tourneyIndex-1], id, tvIndex)
 
   isAdmin = (admin) ->
     admins.indexOf(admin) isnt -1s
@@ -54,6 +64,12 @@ module.exports = (robot) ->
   getPlayer = (msg, tournament, userId) ->
     tournament.players.filter (player) ->
       player.participant.id == userId
+
+  setMatch = (msg, tournament, id, tvIndex) ->
+    return msg.send("That TV doesn't exist!") if tvIndex <=0 or tvIndex > tournament.tellys.length
+    return msg.send("That match is already being played!") if tournament.tellys.indexOf(match.match.identifier) isnt -1
+    tournament.tellys[tvIndex - 1] = id
+    msg.send("Match #{id} is now on TV #{tvIndex}.")
 
   fetchTournament = (msg, tournament) ->
     msg.http(challongeApi+"/tournaments/"+tournament.hash+".json?include_matches=1&include_participants=1")
