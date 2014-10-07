@@ -41,11 +41,11 @@ module.exports = (robot) ->
     timeoutId = setInterval ->
       fetchTournament(msg, t) for t in tournaments
       mapMatches(msg, t) for t in tournaments
-    , 20000
+    , 15000
 
 
   isAdmin = (admin) ->
-    admins.indexOf(admin) isnt -1
+    admins.indexOf(admin) isnt -1s
 
   getMatch = (msg, tournament, identifier) ->
     tournament.matches.filter (match) ->
