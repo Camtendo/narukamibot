@@ -54,6 +54,10 @@ module.exports = (robot) ->
     tvIndex = msg.match[3]
     setMatch(msg, tournaments[tourneyIndex-1], id, tvIndex)
 
+  robot.hear /for tournament (.*) add tv/i, (msg) ->
+    tourneyIndex = msg.match[1]
+    addTelevision(msg, tournaments[tourneyIndex-1])
+
   isAdmin = (admin) ->
     admins.indexOf(admin) isnt -1s
 
@@ -65,8 +69,13 @@ module.exports = (robot) ->
     tournament.players.filter (player) ->
       player.participant.id == userId
 
+  addTelevision = (msg, tournament) ->
+    tournament.tvs+=1
+    tournament.tellys.push ''
+    msg.send("Successfully added available TV")
+
   setMatch = (msg, tournament, id, tvIndex) ->
-    return msg.send("That TV doesn't exist!") if tvIndex <=0 or tvIndex > tournament.tellys.length
+    return msg.send("That TV doesn't exist!") if tvIndex <=0 or tvIndex > tournament.tvs
     return msg.send("That match is already being played!") if tournament.tellys.indexOf(match.match.identifier) isnt -1
     tournament.tellys[tvIndex - 1] = id
     msg.send("Match #{id} is now on TV #{tvIndex}.")
