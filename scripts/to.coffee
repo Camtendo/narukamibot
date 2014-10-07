@@ -86,7 +86,7 @@ module.exports = (robot) ->
     #Determine Queued Matches
     queuedMatches = []
     for match in tournament.matches then do (match) =>
-      if match.match.state == "open"
+      if match.match.state == "open" and tournament.tellys.indexOf(match.match.identifier) is -1
         queuedMatches.push match
       else
         state = match.match.state
@@ -101,6 +101,6 @@ module.exports = (robot) ->
         id = match.match.identifier
         tournament.tellys[i] = id
         msg.send("Match #{id}: #{leftPlayer} vs. #{rightPlayer} should be put on TV #{i+1}")
-        queuedMatches.splice(0, 1)
+        queuedMatches = queuedMatches.slice(1)
       else
         skip = true
